@@ -1,0 +1,11 @@
+{
+	"name":"test2",
+	"bpm":130,
+	"events":[
+		{
+			"time":1000,
+			"type":0,
+			"extraData":{}
+		}	
+	]
+}
