@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://krc7wshnlt16"]
+[gd_scene load_steps=6 format=3 uid="uid://krc7wshnlt16"]
 
 [ext_resource type="Script" uid="uid://efr2ucrqds4e" path="res://Menus/MainMenu/main.gd" id="1_0xm2m"]
-[ext_resource type="Texture2D" uid="uid://cbingtap2uesx" path="res://icon.svg" id="1_ig7tw"]
+[ext_resource type="Texture2D" uid="uid://b8ixu8dwmro2m" path="res://menuButton.png" id="2_a2dq3"]
 [ext_resource type="Script" uid="uid://bd43hq4gxpah1" path="res://Menus/MainMenu/play.gd" id="3_h2yge"]
 [ext_resource type="Script" uid="uid://d4maq3mq1x8x5" path="res://Menus/MainMenu/credits.gd" id="4_1bvp3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_e1bn5"]
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Node2D" type="Node2D"]
 
@@ -12,12 +16,32 @@ script = ExtResource("1_0xm2m")
 
 [node name="Play" type="Sprite2D" parent="Buttons"]
 position = Vector2(576, 288)
-scale = Vector2(1, 0.5)
-texture = ExtResource("1_ig7tw")
+scale = Vector2(1, 1)
+texture = ExtResource("2_a2dq3")
 script = ExtResource("3_h2yge")
+
+[node name="Label" type="Label" parent="Buttons/Play"]
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+text = "play"
+label_settings = SubResource("LabelSettings_e1bn5")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Credits" type="Sprite2D" parent="Buttons"]
 position = Vector2(576, 384)
-scale = Vector2(1, 0.5)
-texture = ExtResource("1_ig7tw")
+scale = Vector2(1, 1)
+texture = ExtResource("2_a2dq3")
 script = ExtResource("4_1bvp3")
+
+[node name="Label" type="Label" parent="Buttons/Credits"]
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+text = "credits"
+label_settings = SubResource("LabelSettings_e1bn5")
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -17,6 +17,7 @@ func _ready() -> void:
 		newIcon.resetLevel()
 		add_child(newIcon)
 		levelIcons.push_back(newIcon)
+	changeLevel(0)
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("Esc"):
