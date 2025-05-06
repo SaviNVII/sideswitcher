@@ -16,7 +16,6 @@ script = ExtResource("1_0xm2m")
 
 [node name="Play" type="Sprite2D" parent="Buttons"]
 position = Vector2(576, 288)
-scale = Vector2(1, 1)
 texture = ExtResource("2_a2dq3")
 script = ExtResource("3_h2yge")
 
@@ -32,7 +31,6 @@ vertical_alignment = 1
 
 [node name="Credits" type="Sprite2D" parent="Buttons"]
 position = Vector2(576, 384)
-scale = Vector2(1, 1)
 texture = ExtResource("2_a2dq3")
 script = ExtResource("4_1bvp3")
 

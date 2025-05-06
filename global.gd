@@ -13,7 +13,7 @@ func _ready() -> void:
 			fileName = dir.get_next()
 	else:
 		print("An error occurred when trying to access the path.")
-		
+
 func loadSong(dir):
 	var file = dir + "/data.json"
 	var json_as_text = FileAccess.get_file_as_string(file)
