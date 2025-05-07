@@ -1,4 +1,4 @@
 extends Sprite2D
 
 func trigger():
-	pass
+	get_tree().change_scene_to_file("res://Menus/CreditsMenu/CreditsMenu.tscn")

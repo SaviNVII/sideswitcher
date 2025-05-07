@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dif4jwqh6u6s0"]
+
+[ext_resource type="Script" uid="uid://cbbk8h4ipy7ig" path="res://Menus/CreditsMenu/credits_menu.gd" id="1_8pxlg"]
+
+[node name="CreditsMenu" type="Node2D"]
+script = ExtResource("1_8pxlg")
