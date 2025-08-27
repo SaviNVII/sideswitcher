@@ -5,6 +5,7 @@ var levelOffset: int = 0
 var levelSelection: int = 0
 var canMove : bool = true
 var selected: int = 0
+var levelLoad = load("res://Menus/LevelLoad/LevelLoad.tscn")
 
 func _ready() -> void:
 	var preloadedIcon = load("res://Menus/LevelMenu/LevelIcon.tscn")
@@ -29,6 +30,14 @@ func _process(delta: float) -> void:
 			changeLevel(1)
 		if Input.is_action_just_pressed("Right"):
 			changeLevel(-1)
+	
+	if Input.is_action_just_pressed("Select"):
+		var newNode = Node2D.new()
+		var newNodeLabel = Label.new()
+		#newNodeLabel.text = Global.levels[selected]
+		newNode.add_child(newNodeLabel)
+		#levelLoad.add_child(newNode)
+		get_tree().change_scene_to_file("res://Menus/LevelLoad/LevelLoad.tscn")
 
 ## Changes the selected level.
 ## Moves position of all levels and scales up selected levels.

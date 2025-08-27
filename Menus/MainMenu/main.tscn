@@ -9,9 +9,10 @@
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 
-[node name="Node2D" type="Node2D"]
+[node name="MainMenu" type="Node2D"]
 
 [node name="Buttons" type="Node2D" parent="."]
+position = Vector2(-2, 0)
 script = ExtResource("1_0xm2m")
 
 [node name="Play" type="Sprite2D" parent="Buttons"]
