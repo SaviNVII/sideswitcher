@@ -23,6 +23,10 @@ Global="*res://global.gd"
 
 window/stretch/mode="viewport"
 
+[editor]
+
+version_control/autoload_on_startup=true
+
 [input]
 
 Left={
