@@ -5,7 +5,9 @@
 		{
 			"time":1000,
 			"type":0,
-			"extraData":{}
+			"extraData":{
+				"sides":6
+			}
 		}
 	]
 }
