@@ -60,8 +60,6 @@ func changeLevel(offset):
 		canMove = false
 		tween.tween_property(levelIcon, "position", Vector2(levelIcon.position.x + offset * spacing, levelIcon.position.y), 0.2)
 		tween.tween_property(self,"canMove",true,0.01)
-		#print("levelIcon.levelId = ", levelIcon.levelId)
-		#print("selected = ", selected)
 		if levelIcon.levelId == selected:
 			levelIcon.scale = Vector2(2, 2)
 		else:
