@@ -5,7 +5,6 @@ var levelOffset: int = 0
 var levelSelection: int = 0
 var canMove : bool = true
 var selected: int = 0
-var levelLoad = preload("res://Menus/LevelLoad/LevelLoad.tscn").instantiate()
 
 func _ready() -> void:
 	var preloadedIcon = load("res://Menus/LevelMenu/LevelIcon.tscn")
@@ -32,8 +31,9 @@ func _process(delta: float) -> void:
 			changeLevel(-1)
 	
 	if Input.is_action_just_pressed("Select"):
-		get_tree().change_scene_to_file("res://Menus/LevelLoad/LevelLoad.tscn")
-		levelLoad.load(Global.levels[selected].name, int(Global.levels[selected].events[0].extraData.sides))
+		print(selected)
+		Global.loadLevel(selected)
+		#levelLoad.load(Global.levels[selected].name, int(Global.levels[selected].events[0].extraData.sides))
 
 ## Changes the selected level.
 ## Moves position of all levels and scales up selected levels.

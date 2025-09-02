@@ -1,6 +1,7 @@
 extends Node
 
 var levels: Array = []
+var selected
 
 func _ready() -> void:
 	var dir = DirAccess.open("res://Levels")
@@ -13,7 +14,7 @@ func _ready() -> void:
 			fileName = dir.get_next()
 	else:
 		print("An error occurred when trying to access the path.")
-	print(levels)
+	#print(levels)
 
 func loadSong(dir):
 	var file = dir + "/data.json"
@@ -21,3 +22,7 @@ func loadSong(dir):
 	var json_as_dict = JSON.parse_string(json_as_text)
 	if json_as_dict:
 		levels.push_front(json_as_dict)
+		
+func loadLevel(selected):
+	self.selected = selected
+	get_tree().change_scene_to_file("res://Menus/LevelLoad/LevelLoad.tscn")
