@@ -33,7 +33,6 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("Select"):
 		print(selected)
 		Global.loadLevel(selected)
-		#levelLoad.load(Global.levels[selected].name, int(Global.levels[selected].events[0].extraData.sides))
 
 ## Changes the selected level.
 ## Moves position of all levels and scales up selected levels.

@@ -14,7 +14,6 @@ func _ready() -> void:
 			fileName = dir.get_next()
 	else:
 		print("An error occurred when trying to access the path.")
-	#print(levels)
 
 func loadSong(dir):
 	var file = dir + "/data.json"
@@ -25,4 +24,6 @@ func loadSong(dir):
 		
 func loadLevel(selected):
 	self.selected = selected
+	print(levels)
+	
 	get_tree().change_scene_to_file("res://Menus/LevelLoad/LevelLoad.tscn")
