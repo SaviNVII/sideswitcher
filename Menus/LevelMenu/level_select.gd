@@ -7,6 +7,7 @@ var canMove : bool = true
 var selected: int = 0
 
 func _ready() -> void:
+	print(levelOffset)
 	var preloadedIcon = load("res://Menus/LevelMenu/LevelIcon.tscn")
 	
 	for i:float in 7:
@@ -18,7 +19,8 @@ func _ready() -> void:
 		newIcon.resetLevel()
 		add_child(newIcon)
 		levelIcons.push_back(newIcon)
-	changeLevel(0)
+		
+		changeLevel(0)
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("Esc"):
@@ -34,15 +36,8 @@ func _process(delta: float) -> void:
 		print(selected)
 		Global.loadLevel(selected)
 
-## Changes the selected level.
-## Moves position of all levels and scales up selected levels.
-## Changes selected value.
-## Adds or subtracts to selected.
-## If selected is less than 0 the value is set to the size of the levels array in global - 1.
-## If selected is greater than levels array size - 1 the value is set to 0.
-## @param offset: int - used to modify values.
 func changeLevel(offset):
-	if !(selected > Global.levels.size() - 1) && !(selected < 0):
+	if (selected <= Global.levels.size() - 1) && (selected >= 0):
 		selected += offset
 	if selected > Global.levels.size() - 1:
 		selected = 0
@@ -59,7 +54,7 @@ func changeLevel(offset):
 		canMove = false
 		tween.tween_property(levelIcon, "position", Vector2(levelIcon.position.x + offset * spacing, levelIcon.position.y), 0.2)
 		tween.tween_property(self,"canMove",true,0.01)
-		if levelIcon.levelId == selected:
+		if levelIcon.levelId == Global.selected:
 			levelIcon.scale = Vector2(2, 2)
 		else:
 			levelIcon.scale = Vector2(1, 1)

@@ -24,6 +24,4 @@ func loadSong(dir):
 		
 func loadLevel(selected):
 	self.selected = selected
-	print(levels)
-	
 	get_tree().change_scene_to_file("res://Menus/LevelLoad/LevelLoad.tscn")
