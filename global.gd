@@ -9,7 +9,6 @@ var screen_center_x = screen_width/2
 var screen_center_y = screen_height/2
 
 func _ready() -> void:
-	print("Width, %s Height, %s Center X, %s Center Y, %s" %[screen_width, screen_height, screen_center_x, screen_center_y])
 	var dir = DirAccess.open("res://Levels")
 	if dir:
 		dir.list_dir_begin()
