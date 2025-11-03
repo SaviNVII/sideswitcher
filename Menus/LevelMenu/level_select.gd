@@ -33,7 +33,6 @@ func _process(delta: float) -> void:
 			changeLevel(-1)
 	
 	if Input.is_action_just_pressed("Select"):
-		print(selected)
 		Global.loadLevel(selected)
 
 func changeLevel(offset):
@@ -54,7 +53,7 @@ func changeLevel(offset):
 		canMove = false
 		tween.tween_property(levelIcon, "position", Vector2(levelIcon.position.x + offset * spacing, levelIcon.position.y), 0.2)
 		tween.tween_property(self,"canMove",true,0.01)
-		if levelIcon.levelId == Global.selected:
+		if levelIcon.levelId == selected:
 			levelIcon.scale = Vector2(2, 2)
 		else:
 			levelIcon.scale = Vector2(1, 1)
