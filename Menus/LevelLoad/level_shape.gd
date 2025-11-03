@@ -1,8 +1,5 @@
 extends Node2D
 
-func _ready(): #remove later
-	create_shape(6)
-
 func create_shape(vertices_amount):
 	var radius = 50
 	var vertices = PackedVector2Array()
