@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7qlif7nsjf11"]
+
+[ext_resource type="Script" uid="uid://c0oqowqr2jlov" path="res://Menus/LevelLoad/level_player.gd" id="1_lfb5w"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8nvff"]
+
+[node name="LevelPlayer" type="Node2D"]
+script = ExtResource("1_lfb5w")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(10, 10)
+shape = SubResource("CircleShape2D_8nvff")
+debug_color = Color(0.208051, 0.568929, 0.793451, 0.42)
