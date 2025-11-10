@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cmaks8sgpywei"]
+
+[ext_resource type="Script" uid="uid://l60504au8gma" path="res://Menus/LevelLoad/obstacle.gd" id="1_p8fsg"]
+
+[node name="Obstacle" type="Node2D"]
+script = ExtResource("1_p8fsg")

@@ -7,7 +7,6 @@ var canMove : bool = true
 var selected: int = 0
 
 func _ready() -> void:
-	print(levelOffset)
 	var preloadedIcon = load("res://Menus/LevelMenu/LevelIcon.tscn")
 	
 	for i:float in 7:

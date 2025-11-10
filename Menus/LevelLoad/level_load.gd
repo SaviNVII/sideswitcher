@@ -4,8 +4,12 @@ var shape_radius = 100
 var player_x
 var player_y
 
+var level_seed = []
+
 var preloaded_player = load("res://Menus/LevelLoad/LevelPlayer.tscn")
 var player = preloaded_player.instantiate()
+
+var preloaded_obstacle = load("res://Menus/LevelLoad/Obstacle.tscn")
 
 var song_name = Global.levels[Global.selected].name
 var bpm = Global.levels[Global.selected].bpm
@@ -15,6 +19,10 @@ var player_rotation = 180/sides
 func _ready() -> void:
 	create_shape(sides)
 	add_child(player)
+	
+	var new_obstacle = preloaded_obstacle.instantiate()
+	add_child(new_obstacle)
+	new_obstacle.create_obstacle(100, 200, 170, 130, 300, 500)
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("Esc"):
