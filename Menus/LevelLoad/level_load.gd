@@ -22,7 +22,7 @@ func _ready() -> void:
 	
 	var new_obstacle = preloaded_obstacle.instantiate()
 	add_child(new_obstacle)
-	new_obstacle.create_obstacle(100, 200, 170, 130, 300, 500)
+	new_obstacle.create_obstacle(100, 150, 150, 100, 300, 320, 380, 400)
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("Esc"):
@@ -53,6 +53,4 @@ func create_shape(vertices_amount):
 	poly.set_polygon(vertices)
 	poly.color = Color(1, 1, 1)
 	poly.position = Vector2(Global.screen_center_x, Global.screen_center_y)
-	add_child(poly)
-	print("hi")
-	
+	add_child(poly)	
