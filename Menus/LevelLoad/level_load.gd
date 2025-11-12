@@ -28,7 +28,7 @@ func _ready() -> void:
 	new_obstacle.create_obstacle(1, sides, 50, 250)
 
 func _process(delta: float) -> void:
-	new_obstacle.update_shape(1)
+	new_obstacle.update_shape(5)
 	if Input.is_action_just_pressed("Esc"):
 		get_tree().change_scene_to_file("res://Menus/LevelMenu/LevelSelect.tscn")
 		
