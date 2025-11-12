@@ -16,15 +16,19 @@ var bpm = Global.levels[Global.selected].bpm
 var events = Global.levels[Global.selected].events
 var sides = int(events[0].extraData.sides)
 var player_rotation = 180/sides
+
+var new_obstacle = preloaded_obstacle.instantiate()
+
+
 func _ready() -> void:
 	create_shape(sides)
 	add_child(player)
 	
-	var new_obstacle = preloaded_obstacle.instantiate()
 	add_child(new_obstacle)
-	new_obstacle.create_obstacle(100, 150, 150, 100, 300, 320, 380, 400)
+	new_obstacle.create_obstacle(1, sides, 50, 250)
 
 func _process(delta: float) -> void:
+	new_obstacle.update_shape(1)
 	if Input.is_action_just_pressed("Esc"):
 		get_tree().change_scene_to_file("res://Menus/LevelMenu/LevelSelect.tscn")
 		
