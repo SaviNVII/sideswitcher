@@ -25,17 +25,7 @@ func create_obstacle(side, sides, height, dist):
 	shape_height = height
 	current_side = side
 	
-	calc_points()
-	
-	var points = PackedVector2Array()
-	points.append(Vector2(x1, y1))
-	points.append(Vector2(x2, y2))
-	points.append(Vector2(x3, y3))
-	points.append(Vector2(x4, y4))
-	
-	trapezoid.set_polygon(points)
-	trapezoid.color = Color(1, 1,1)
-	trapezoid.position = Vector2(0, 0)
+	update_shape(0)
 	
 	add_child(trapezoid)
 
