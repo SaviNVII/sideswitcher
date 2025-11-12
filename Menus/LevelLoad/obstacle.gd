@@ -13,7 +13,7 @@ var x4
 var y4
 
 var distance
-var shape_sides
+var shape_sides # sides of the shape the obstacle is around
 var shape_height
 var current_side
 
