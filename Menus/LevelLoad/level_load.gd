@@ -4,7 +4,8 @@ var shape_radius = 100
 var player_x
 var player_y
 
-var level_seed = []
+var level_seed = [0,"","","","",3,4,5,4,3,2,1]
+var seed_index = 0
 
 var preloaded_player = load("res://Menus/LevelLoad/LevelPlayer.tscn")
 var player = preloaded_player.instantiate()
@@ -17,18 +18,20 @@ var events = Global.levels[Global.selected].events
 var sides = int(events[0].extraData.sides)
 var player_rotation = 180/sides
 
-var new_obstacle = preloaded_obstacle.instantiate()
-
+var delay = bpm/4
+var delay_index = 0
 
 func _ready() -> void:
 	create_shape(sides)
 	add_child(player)
 	
-	add_child(new_obstacle)
-	new_obstacle.create_obstacle(1, sides, 50, 250)
-
 func _process(delta: float) -> void:
-	new_obstacle.update_shape(5)
+	if(delay_index >= delay):
+		update_game()
+		delay_index = 0
+	else:
+		delay_index += 1
+	
 	if Input.is_action_just_pressed("Esc"):
 		get_tree().change_scene_to_file("res://Menus/LevelMenu/LevelSelect.tscn")
 		
@@ -45,6 +48,15 @@ func _process(delta: float) -> void:
 		if (player_rotation >= 360):
 			player_rotation -= 360
 	
+	
+func update_game():
+	if (seed_index < level_seed.size()):
+		if(level_seed[seed_index] is int):
+			var new_obstacle = preloaded_obstacle.instantiate()
+			add_child(new_obstacle)
+			new_obstacle.create_obstacle(level_seed[seed_index], sides, 50, 400)
+	seed_index += 1
+
 func create_shape(vertices_amount):
 	var vertices = PackedVector2Array()
 	for i in range(vertices_amount):

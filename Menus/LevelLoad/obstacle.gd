@@ -19,6 +19,9 @@ var current_side
 
 var trapezoid = Polygon2D.new()
 
+func _process(delta: float) -> void:
+	update_shape(5)
+
 func create_obstacle(side, sides, height, dist):
 	distance = dist
 	shape_sides = sides
@@ -52,6 +55,9 @@ func calc_points():
 
 func update_shape(modifier):
 	distance -= modifier
+	if(distance <= 0):
+		self.queue_free()
+	
 	calc_points()
 	
 	var points = PackedVector2Array()
