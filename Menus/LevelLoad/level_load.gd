@@ -4,7 +4,9 @@ var shape_radius = 100
 var player_x
 var player_y
 
-var level_seed = [0,"","",6,"",3,4,5,4,3,"",2,1,1,1,1]
+var poly
+
+var level_seed = [0,"","","","",3,4,5,4,3,"",2,1,1,1,1]
 var seed_index = 0
 
 var preloaded_player = load("res://Menus/LevelLoad/LevelPlayer.tscn")
@@ -19,7 +21,7 @@ var sides = int(events[0].extraData.sides)
 var player_rotation = 180/sides
 
 var delay = bpm/16
-var delay_index = delay
+var delay_index = 0 # might want to set to bpm so level starts instantly
 
 func _ready() -> void:
 	create_shape(sides)
@@ -29,6 +31,7 @@ func _process(delta: float) -> void:
 	if(delay_index >= delay):
 		update_game()
 		delay_index = 0
+		change_sides(7)
 	else:
 		delay_index += 1
 	
@@ -48,7 +51,12 @@ func _process(delta: float) -> void:
 		if (player_rotation >= 360):
 			player_rotation -= 360
 	
-	
+
+func change_sides(amount):
+	sides = amount
+	poly.queue_free()
+	create_shape(sides)
+
 func update_game():
 	if (seed_index < level_seed.size()):
 		if(level_seed[seed_index] is int):
@@ -58,6 +66,7 @@ func update_game():
 	seed_index += 1
 
 func create_shape(vertices_amount):
+	poly = Polygon2D.new()
 	var vertices = PackedVector2Array()
 	for i in range(vertices_amount):
 		var angle = (i * 2 * PI) / vertices_amount
@@ -65,7 +74,6 @@ func create_shape(vertices_amount):
 		var y = shape_radius * sin(angle)
 		vertices.append(Vector2(x, y))
 		
-	var poly = Polygon2D.new()
 	poly.set_polygon(vertices)
 	poly.color = Color(1, 1, 1)
 	poly.position = Vector2(Global.screen_center_x, Global.screen_center_y)
