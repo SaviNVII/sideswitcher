@@ -4,7 +4,7 @@ var shape_radius = 100
 var player_x
 var player_y
 
-var level_seed = [0,"","","","",3,4,5,4,3,2,1]
+var level_seed = [0,"","",6,"",3,4,5,4,3,"",2,1,1,1,1]
 var seed_index = 0
 
 var preloaded_player = load("res://Menus/LevelLoad/LevelPlayer.tscn")
@@ -18,8 +18,8 @@ var events = Global.levels[Global.selected].events
 var sides = int(events[0].extraData.sides)
 var player_rotation = 180/sides
 
-var delay = bpm/4
-var delay_index = 0
+var delay = bpm/16
+var delay_index = delay
 
 func _ready() -> void:
 	create_shape(sides)

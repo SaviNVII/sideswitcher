@@ -11,8 +11,8 @@ func _ready() -> void:
 	
 	for i:float in 7:
 		var newIcon = preloadedIcon.instantiate()
-		newIcon.position.x = 1152 * ((i - 1)/5) + 110
-		newIcon.position.y = 300
+		newIcon.position.x = Global.screen_width * ((i - 1)/5) + 110
+		newIcon.position.y = Global.screen_center_y
 		newIcon.levelId = i
 		newIcon.baseId = i - 1
 		newIcon.resetLevel()
