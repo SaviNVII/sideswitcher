@@ -6,7 +6,14 @@ var player_y
 
 var poly
 
-var level_seed = [0,"","","","",3,4,5,4,3,"",2,1,1,1,1]
+var level_seed = [
+	[1,1,1,"",1],
+	[1],
+	[],
+	[1],
+	[1],
+	[1],
+]
 var seed_index = 0
 
 var preloaded_player = load("res://Menus/LevelLoad/LevelPlayer.tscn")
@@ -20,7 +27,7 @@ var events = Global.levels[Global.selected].events
 var sides = int(events[0].extraData.sides)
 var player_rotation = 180/sides
 
-var delay = bpm/16
+var delay = 16/bpm
 var delay_index = 0 # might want to set to bpm so level starts instantly
 
 func _ready() -> void:
@@ -30,11 +37,9 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if(delay_index >= delay):
 		update_game()
-		delay_index = 0
-		change_sides(7)
+		delay_index = delay_index-delay
 	else:
-		delay_index += 1
-	
+		delay_index += delta
 	if Input.is_action_just_pressed("Esc"):
 		get_tree().change_scene_to_file("res://Menus/LevelMenu/LevelSelect.tscn")
 		
@@ -58,11 +63,12 @@ func change_sides(amount):
 	create_shape(sides)
 
 func update_game():
-	if (seed_index < level_seed.size()):
-		if(level_seed[seed_index] is int):
-			var new_obstacle = preloaded_obstacle.instantiate()
-			add_child(new_obstacle)
-			new_obstacle.create_obstacle(level_seed[seed_index], sides, 50, 400)
+	for i in range(level_seed.size()):
+		if(seed_index < level_seed[i].size()):
+			if(level_seed[i][seed_index] is int):
+				var new_obstacle = preloaded_obstacle.instantiate()
+				add_child(new_obstacle)
+				new_obstacle.create_obstacle(i, sides, 50, 400)
 	seed_index += 1
 
 func create_shape(vertices_amount):
@@ -78,3 +84,6 @@ func create_shape(vertices_amount):
 	poly.color = Color(1, 1, 1)
 	poly.position = Vector2(Global.screen_center_x, Global.screen_center_y)
 	add_child(poly)	
+
+func die():
+	get_tree().change_scene_to_file("res://Menus/LevelMenu/LevelSelect.tscn")

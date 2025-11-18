@@ -28,8 +28,6 @@ func create_obstacle(side, sides, height, dist):
 	shape_height = height
 	current_side = side
 	
-	update_shape(0)
-	
 	add_child(trapezoid)
 
 func calc_points():
