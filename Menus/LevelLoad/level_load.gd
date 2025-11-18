@@ -28,7 +28,7 @@ var sides = int(events[0].extraData.sides)
 var player_rotation = 180/sides
 
 var delay = 16/bpm
-var delay_index = 0 # might want to set to bpm so level starts instantly
+var delay_index = 0
 
 func _ready() -> void:
 	create_shape(sides)
