@@ -30,6 +30,8 @@ var player_rotation = 180/sides
 var delay = 16/bpm
 var delay_index = 0
 
+var obstacle_speed = bpm * 2
+
 func _ready() -> void:
 	create_shape(sides)
 	add_child(player)
@@ -37,7 +39,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if(delay_index >= delay):
 		update_game()
-		delay_index = delay_index-delay
+		delay_index -= delay
 	else:
 		delay_index += delta
 	if Input.is_action_just_pressed("Esc"):
@@ -68,7 +70,7 @@ func update_game():
 			if(level_seed[i][seed_index] is int):
 				var new_obstacle = preloaded_obstacle.instantiate()
 				add_child(new_obstacle)
-				new_obstacle.create_obstacle(i, sides, 50, 400)
+				new_obstacle.create_obstacle(i, sides, 50, 400, obstacle_speed)
 	seed_index += 1
 
 func create_shape(vertices_amount):

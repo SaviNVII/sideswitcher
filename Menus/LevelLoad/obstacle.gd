@@ -16,17 +16,19 @@ var distance
 var shape_sides # sides of the shape the obstacle is around
 var shape_height
 var current_side
+var obstacle_speed = 0
 
 var trapezoid = Polygon2D.new()
 
 func _process(delta: float) -> void:
-	update_shape(5)
+	update_shape(obstacle_speed * delta)
 
-func create_obstacle(side, sides, height, dist):
+func create_obstacle(side, sides, height, dist, speed):
 	distance = dist
 	shape_sides = sides
 	shape_height = height
 	current_side = side
+	obstacle_speed = speed
 	
 	add_child(trapezoid)
 
