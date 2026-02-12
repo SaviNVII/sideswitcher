@@ -10,7 +10,6 @@ script = ExtResource("1_lfb5w")
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-scale = Vector2(10, 10)
 shape = SubResource("CircleShape2D_8nvff")
 debug_color = Color(0.208051, 0.568929, 0.793451, 0.42)
 
