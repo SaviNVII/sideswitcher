@@ -10,4 +10,4 @@ func die():
 	get_tree().change_scene_to_file("res://Menus/LevelMenu/LevelSelect.tscn")
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	die()
+	call_deferred("die")
