@@ -86,3 +86,6 @@ func create_shape(vertices_amount):
 	poly.color = Color(1, 1, 1)
 	poly.position = Vector2(Global.screen_center_x, Global.screen_center_y)
 	add_child(poly)	
+
+func die():
+	get_tree().change_scene_to_file("res://Menus/LevelMenu/LevelSelect.tscn")
