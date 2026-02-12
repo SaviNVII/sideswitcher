@@ -19,6 +19,8 @@ var current_side
 var obstacle_speed = 0
 
 var trapezoid = Polygon2D.new()
+var area = Area2D.new()
+var shape = ConvexPolygonShape2D.new()
 
 func _process(delta: float) -> void:
 	update_shape(obstacle_speed * delta)
@@ -31,6 +33,11 @@ func create_obstacle(side, sides, height, dist, speed):
 	obstacle_speed = speed
 	
 	add_child(trapezoid)
+	add_child(area)
+	
+	var shape_owner = CollisionShape2D.new()
+	shape_owner.shape = shape
+	area.add_child(shape_owner)
 
 func calc_points():
 	var theta_one = (360/shape_sides) * current_side
@@ -67,3 +74,4 @@ func update_shape(modifier):
 	points.append(Vector2(x4, y4))
 	
 	trapezoid.set_polygon(points)
+	shape.set_points(points)
