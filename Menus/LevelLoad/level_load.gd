@@ -6,15 +6,7 @@ var player_y
 
 var poly
 
-var level_seed = [
-	[1,1,1,"",1],
-	[1],
-	[],
-	[1],
-	[1],
-	[1],
-]
-var seed_index = 0
+var map_index = 0
 
 var preloaded_player = load("res://Menus/LevelLoad/LevelPlayer.tscn")
 var player = preloaded_player.instantiate()
@@ -26,6 +18,8 @@ var bpm = Global.levels[Global.selected].bpm
 var events = Global.levels[Global.selected].events
 var sides = int(events[0].extraData.sides)
 var player_rotation = 180/sides
+
+var level_map = events[0].map;
 
 var delay = 16/bpm
 var delay_index = 0
@@ -65,13 +59,13 @@ func change_sides(amount):
 	create_shape(sides)
 
 func update_game():
-	for i in range(level_seed.size()):
-		if(seed_index < level_seed[i].size()):
-			if(level_seed[i][seed_index] is int):
+	for i in range(level_map.size()):
+		if(map_index < level_map[i].size()):
+			if(typeof(level_map[i][map_index]) == TYPE_FLOAT):
 				var new_obstacle = preloaded_obstacle.instantiate()
 				add_child(new_obstacle)
 				new_obstacle.create_obstacle(i, sides, 50, 400, obstacle_speed)
-	seed_index += 1
+	map_index += 1
 
 func create_shape(vertices_amount):
 	poly = Polygon2D.new()
