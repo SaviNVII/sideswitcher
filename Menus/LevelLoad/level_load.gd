@@ -40,9 +40,7 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("Esc"):
 		get_tree().change_scene_to_file("res://Menus/LevelMenu/LevelSelect.tscn")
 		
-	player_x = Global.screen_center_x + shape_radius * cos(deg_to_rad(player_rotation))
-	player_y = Global.screen_center_y + shape_radius * sin(deg_to_rad(player_rotation))
-	player.position = Vector2(player_x, player_y)
+	set_player()
 	
 	if (Input.is_action_just_pressed("Right")):
 		player_rotation = player_rotation + (360/sides)
@@ -56,8 +54,14 @@ func _process(delta: float) -> void:
 
 func change_sides(amount):
 	sides = amount
+	player_rotation = (180/sides)
 	poly.queue_free()
 	create_shape(sides)
+	
+func set_player():
+	player_x = Global.screen_center_x + shape_radius * cos(deg_to_rad(player_rotation))
+	player_y = Global.screen_center_y + shape_radius * sin(deg_to_rad(player_rotation))
+	player.position = Vector2(player_x, player_y)
 
 func update_game():
 	for i in range(level_map.size()):
