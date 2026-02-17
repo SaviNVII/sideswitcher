@@ -34,7 +34,6 @@ func _ready() -> void:
 	add_child(player)
 	
 func _process(delta: float) -> void:
-	#print(current_offset)
 	if(delay_index >= delay):
 		update_game()
 		delay_index -= delay
