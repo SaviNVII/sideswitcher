@@ -13,14 +13,16 @@ var player = preloaded_player.instantiate()
 
 var preloaded_obstacle = load("res://Menus/LevelLoad/Obstacle.tscn")
 
+var current_offset = 1
+
 var song_name = Global.levels[Global.selected].name
 var bpm = Global.levels[Global.selected].bpm
 var events = Global.levels[Global.selected].events
 var sides = int(events[0].extraData.sides)
-var player_rotation = 180/sides
+var player_rotation = (180/sides) * current_offset
 
-var level_map = events[0].map;
-var side_map = events[0].sideMap;
+var level_map = events[0].map
+var side_map = events[0].sideMap
 
 var delay = 16/bpm
 var delay_index = 0
@@ -32,6 +34,7 @@ func _ready() -> void:
 	add_child(player)
 	
 func _process(delta: float) -> void:
+	print(current_offset)
 	if(delay_index >= delay):
 		update_game()
 		delay_index -= delay
@@ -43,18 +46,30 @@ func _process(delta: float) -> void:
 	set_player()
 	
 	if (Input.is_action_just_pressed("Right")):
-		player_rotation = player_rotation + (360/sides)
-		if (player_rotation >= 360):
-			player_rotation -= 360
+		#player_rotation = player_rotation + (360/sides)
+		#if (player_rotation >= 360):
+			#player_rotation -= 360
+		current_offset += 2
+		if (current_offset >= sides * 2):
+			current_offset = 1
+		player_rotation = (180/sides) * current_offset
 	else: if (Input.is_action_just_pressed("Left")):
-		player_rotation = player_rotation - (360/sides)
-		if (player_rotation >= 360):
-			player_rotation -= 360
+		#player_rotation = player_rotation - (360/sides)
+		#if (player_rotation >= 360):
+			#player_rotation -= 360
+		current_offset -= 2
+		if (current_offset <= 0):
+			current_offset = int((sides * 2) - 1)
+		player_rotation = (180/sides) * current_offset
 	
 
 func change_sides(amount):
 	sides = amount
-	player_rotation = (180/sides)
+	player_rotation = (180/sides) * current_offset
+	if (current_offset >= sides * 2):
+			current_offset = 1
+	if (current_offset <= 0):
+			current_offset = int((sides * 2) - 1)
 	poly.queue_free()
 	create_shape(sides)
 	
