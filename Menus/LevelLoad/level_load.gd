@@ -20,6 +20,7 @@ var sides = int(events[0].extraData.sides)
 var player_rotation = 180/sides
 
 var level_map = events[0].map;
+var side_map = events[0].sideMap;
 
 var delay = 16/bpm
 var delay_index = 0
@@ -65,6 +66,10 @@ func update_game():
 				var new_obstacle = preloaded_obstacle.instantiate()
 				add_child(new_obstacle)
 				new_obstacle.create_obstacle(i, sides, 50, 400, obstacle_speed)
+	
+	if(map_index < side_map.size() && typeof(side_map[map_index]) == TYPE_FLOAT):
+		change_sides(side_map[map_index])
+			
 	map_index += 1
 
 func create_shape(vertices_amount):
