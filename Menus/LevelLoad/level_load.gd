@@ -34,7 +34,7 @@ func _ready() -> void:
 	add_child(player)
 	
 func _process(delta: float) -> void:
-	print(current_offset)
+	#print(current_offset)
 	if(delay_index >= delay):
 		update_game()
 		delay_index -= delay
@@ -46,17 +46,11 @@ func _process(delta: float) -> void:
 	set_player()
 	
 	if (Input.is_action_just_pressed("Right")):
-		#player_rotation = player_rotation + (360/sides)
-		#if (player_rotation >= 360):
-			#player_rotation -= 360
 		current_offset += 2
 		if (current_offset >= sides * 2):
 			current_offset = 1
 		player_rotation = (180/sides) * current_offset
 	else: if (Input.is_action_just_pressed("Left")):
-		#player_rotation = player_rotation - (360/sides)
-		#if (player_rotation >= 360):
-			#player_rotation -= 360
 		current_offset -= 2
 		if (current_offset <= 0):
 			current_offset = int((sides * 2) - 1)
