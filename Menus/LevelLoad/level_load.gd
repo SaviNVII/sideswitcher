@@ -29,9 +29,14 @@ var delay_index = 0
 
 var obstacle_speed = bpm * 2
 
+var song = load("res://Levels/" + song_name + "/song.ogg")
+
 func _ready() -> void:
 	create_shape(sides)
 	add_child(player)
+	
+	$AudioStreamPlayer2D.stream = song
+	$AudioStreamPlayer2D.play()
 	
 func _process(delta: float) -> void:
 	if(delay_index >= delay):
