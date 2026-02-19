@@ -20,6 +20,7 @@ var bpm = Global.levels[Global.selected].bpm
 var events = Global.levels[Global.selected].events
 var sides = int(events[0].extraData.sides)
 var player_rotation = (180/sides) * current_offset
+var time = int(events[0].time)
 
 var level_map = events[0].map
 var side_map = events[0].sideMap
@@ -28,6 +29,8 @@ var delay = 16/bpm
 var delay_index = 0
 
 var obstacle_speed = bpm * 2
+
+var time_count: int = 0
 
 var song = load("res://Levels/" + song_name + "/song.ogg")
 
@@ -38,7 +41,13 @@ func _ready() -> void:
 	$AudioStreamPlayer2D.stream = song
 	$AudioStreamPlayer2D.play()
 	
+	$Timer.wait_time = 1
+	$Timer.start()
+	
 func _process(delta: float) -> void:
+	if time_count >= time:
+		win()
+	
 	if(delay_index >= delay):
 		update_game()
 		delay_index -= delay
@@ -60,7 +69,6 @@ func _process(delta: float) -> void:
 			current_offset = int((sides * 2) - 1)
 		player_rotation = (180/sides) * current_offset
 	
-
 func change_sides(amount):
 	sides = amount
 	player_rotation = (180/sides) * current_offset
@@ -102,3 +110,10 @@ func create_shape(vertices_amount):
 	poly.color = Color(1, 1, 1)
 	poly.position = Vector2(Global.screen_center_x, Global.screen_center_y)
 	add_child(poly)	
+
+func _on_timer_timeout():
+	time_count += 1
+	
+func win():
+	print("win")
+	get_tree().change_scene_to_file("res://Menus/LevelMenu/LevelSelect.tscn")
