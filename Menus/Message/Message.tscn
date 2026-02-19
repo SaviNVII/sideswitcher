@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://d3g31qna0o2ij"]
+
+[ext_resource type="Script" uid="uid://dk2qsgrp8adir" path="res://Menus/Message/message.gd" id="1_i31ko"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_y7v6r"]
+load_path = "res://.godot/imported/menuButton.png-b80fa2701474532f7d6d9687ff091ca5.ctex"
+
+[sub_resource type="LabelSettings" id="LabelSettings_i31ko"]
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Message" type="Node2D"]
+script = ExtResource("1_i31ko")
+
+[node name="Node2D" type="Node2D" parent="."]
+scale = Vector2(4, 4)
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+scale = Vector2(1.063, 1)
+texture = SubResource("CompressedTexture2D_y7v6r")
+
+[node name="Node2D2" type="Node2D" parent="."]
+
+[node name="Label" type="Label" parent="Node2D2"]
+offset_left = -136.0
+offset_top = -128.0
+offset_right = 136.0
+offset_bottom = 128.0
+text = "lorem ipsum"
+label_settings = SubResource("LabelSettings_i31ko")
+horizontal_alignment = 1
+vertical_alignment = 1
