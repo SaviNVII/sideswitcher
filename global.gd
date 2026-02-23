@@ -8,6 +8,8 @@ var screen_height = screen_size.y
 var screen_center_x = screen_width/2
 var screen_center_y = screen_height/2
 
+var current_message = "lorem ipsum"
+
 func _ready() -> void:
 	var dir = DirAccess.open("res://Levels")
 	if dir:
@@ -30,3 +32,7 @@ func loadSong(dir):
 func loadLevel(selected):
 	self.selected = selected
 	get_tree().change_scene_to_file("res://Menus/LevelLoad/LevelLoad.tscn")
+
+func displayMessage(message):
+	current_message = message
+	get_tree().change_scene_to_file("res://Menus/Message/Message.tscn")

@@ -115,5 +115,4 @@ func _on_timer_timeout():
 	time_count += 1
 	
 func win():
-	print("win")
-	get_tree().change_scene_to_file("res://Menus/LevelMenu/LevelSelect.tscn")
+	Global.displayMessage("You Win")
