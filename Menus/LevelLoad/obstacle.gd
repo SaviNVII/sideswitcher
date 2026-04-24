@@ -64,7 +64,7 @@ func calc_points():
 
 func update_shape(modifier):
 	distance -= modifier
-	if(distance <= 0):
+	if(distance <= 5):
 		self.queue_free()
 		
 	calc_points()
