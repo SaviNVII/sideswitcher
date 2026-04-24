@@ -77,7 +77,7 @@ func update_shape(modifier):
 	
 	trapezoid.set_polygon(points)
 	shape.set_points(points)
-	var fade_rate = 2 * modifier
+	var fade_rate = modifier
 	trapezoid.modulate = Color8(fade_color[0], fade_color[1], fade_color[2])
 	for i in range(fade_color.size()):
 		fade_color[i] = mini(fade_color[i] + int(fade_rate), 255)
