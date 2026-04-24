@@ -32,7 +32,7 @@ func create_obstacle(side, sides, height, dist, speed, fade):
 	shape_height = height
 	current_side = side
 	obstacle_speed = speed
-	fade_color = fade
+	fade_color = fade.duplicate()
 	
 	add_child(trapezoid)
 	add_child(area)
@@ -67,8 +67,6 @@ func update_shape(modifier):
 	if(distance <= 0):
 		self.queue_free()
 		
-	print(distance)
-	
 	calc_points()
 	
 	var points = PackedVector2Array()
@@ -79,3 +77,9 @@ func update_shape(modifier):
 	
 	trapezoid.set_polygon(points)
 	shape.set_points(points)
+	trapezoid.modulate = Color8(fade_color[0], fade_color[1], fade_color[2])
+	for i in range(fade_color.size()):
+		if fade_color[i] < 255:
+			fade_color[i] += obstacle_speed/(obstacle_speed/5)#value might break with certain bpms
+		else:
+			fade_color[i] = 255
