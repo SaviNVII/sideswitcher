@@ -23,7 +23,7 @@ var trapezoid = Polygon2D.new()
 var area = Area2D.new()
 var shape = ConvexPolygonShape2D.new()
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	update_shape(obstacle_speed * delta)
 
 func create_obstacle(side, sides, height, dist, speed, fade):
@@ -77,9 +77,7 @@ func update_shape(modifier):
 	
 	trapezoid.set_polygon(points)
 	shape.set_points(points)
+	var fade_rate = 2 * modifier
 	trapezoid.modulate = Color8(fade_color[0], fade_color[1], fade_color[2])
 	for i in range(fade_color.size()):
-		if fade_color[i] < 255:
-			fade_color[i] += obstacle_speed/(obstacle_speed/5)#value might break with certain bpms
-		else:
-			fade_color[i] = 255
+		fade_color[i] = mini(fade_color[i] + int(fade_rate), 255)

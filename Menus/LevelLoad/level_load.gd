@@ -46,7 +46,7 @@ func _ready() -> void:
 	$Timer.wait_time = 1
 	$Timer.start()
 	
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if time_count >= time:
 		win()
 	
