@@ -17,6 +17,7 @@ var shape_sides # sides of the shape the obstacle is around
 var shape_height
 var current_side
 var obstacle_speed = 0
+var fade_color
 
 var trapezoid = Polygon2D.new()
 var area = Area2D.new()
@@ -25,12 +26,13 @@ var shape = ConvexPolygonShape2D.new()
 func _process(delta: float) -> void:
 	update_shape(obstacle_speed * delta)
 
-func create_obstacle(side, sides, height, dist, speed):
+func create_obstacle(side, sides, height, dist, speed, fade):
 	distance = dist
 	shape_sides = sides
 	shape_height = height
 	current_side = side
 	obstacle_speed = speed
+	fade_color = fade
 	
 	add_child(trapezoid)
 	add_child(area)
@@ -64,6 +66,8 @@ func update_shape(modifier):
 	distance -= modifier
 	if(distance <= 0):
 		self.queue_free()
+		
+	print(distance)
 	
 	calc_points()
 	

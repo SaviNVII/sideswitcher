@@ -32,6 +32,8 @@ var obstacle_speed = bpm * 2
 
 var time_count: int = 0
 
+var fade_color = events[0].extraData.fadeColor.duplicate()
+
 var song = load("res://Levels/" + song_name + "/song.ogg")
 
 func _ready() -> void:
@@ -90,7 +92,7 @@ func update_game():
 			if(typeof(level_map[i][map_index]) == TYPE_FLOAT):
 				var new_obstacle = preloaded_obstacle.instantiate()
 				add_child(new_obstacle)
-				new_obstacle.create_obstacle(i, sides, 50, 400, obstacle_speed)
+				new_obstacle.create_obstacle(i, sides, 50, 400, obstacle_speed, fade_color)
 	
 	if(map_index < side_map.size() && typeof(side_map[map_index]) == TYPE_FLOAT):
 		change_sides(side_map[map_index])

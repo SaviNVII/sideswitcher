@@ -6,7 +6,8 @@
 			"time":1000,
 			"type":0,
 			"extraData":{
-				"sides":6
+				"sides":6,
+				"fadeColor": [0, 0, 255]
 			},
 			"map":[
 				[]
