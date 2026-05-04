@@ -21,7 +21,7 @@ func _ready() -> void:
 		
 		changeLevel(0)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("Esc"):
 		get_tree().change_scene_to_file("res://Menus/MainMenu/main.tscn")
 	

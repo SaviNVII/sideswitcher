@@ -6,7 +6,7 @@ var children: Array
 func _ready():
 	children = get_children()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("Up") and selection > 0:
 		selection -= 1
 	if Input.is_action_just_pressed("Down") and selection < children.size() - 1:

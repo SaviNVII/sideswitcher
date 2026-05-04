@@ -29,8 +29,8 @@ func loadSong(dir):
 	if json_as_dict:
 		levels.push_front(json_as_dict)
 		
-func loadLevel(selected):
-	self.selected = selected
+func loadLevel(selectedLevel):
+	self.selected = selectedLevel
 	get_tree().change_scene_to_file("res://Menus/LevelLoad/LevelLoad.tscn")
 
 func displayMessage(message):

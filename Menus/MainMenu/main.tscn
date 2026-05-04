@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://krc7wshnlt16"]
+[gd_scene format=3 uid="uid://krc7wshnlt16"]
 
 [ext_resource type="Script" uid="uid://efr2ucrqds4e" path="res://Menus/MainMenu/main.gd" id="1_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://b8ixu8dwmro2m" path="res://menuButton.png" id="2_a2dq3"]
@@ -9,18 +9,18 @@
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 
-[node name="MainMenu" type="Node2D"]
+[node name="MainMenu" type="Node2D" unique_id=177153964]
 
-[node name="Buttons" type="Node2D" parent="."]
+[node name="Buttons" type="Node2D" parent="." unique_id=1524449189]
 position = Vector2(-2, 0)
 script = ExtResource("1_0xm2m")
 
-[node name="Play" type="Sprite2D" parent="Buttons"]
+[node name="Play" type="Sprite2D" parent="Buttons" unique_id=795346603]
 position = Vector2(576, 288)
 texture = ExtResource("2_a2dq3")
 script = ExtResource("3_h2yge")
 
-[node name="Label" type="Label" parent="Buttons/Play"]
+[node name="Label" type="Label" parent="Buttons/Play" unique_id=304294531]
 offset_left = -32.0
 offset_top = -32.0
 offset_right = 32.0
@@ -30,12 +30,12 @@ label_settings = SubResource("LabelSettings_e1bn5")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Credits" type="Sprite2D" parent="Buttons"]
+[node name="Credits" type="Sprite2D" parent="Buttons" unique_id=1156082065]
 position = Vector2(576, 384)
 texture = ExtResource("2_a2dq3")
 script = ExtResource("4_1bvp3")
 
-[node name="Label" type="Label" parent="Buttons/Credits"]
+[node name="Label" type="Label" parent="Buttons/Credits" unique_id=654866217]
 offset_left = -32.0
 offset_top = -32.0
 offset_right = 32.0

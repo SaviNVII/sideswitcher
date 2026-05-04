@@ -8,6 +8,6 @@ func _ready() -> void:
 	var message = Global.current_message
 	$Node2D2/Label.text = message
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("Esc"):
 		get_tree().change_scene_to_file("res://Menus/LevelMenu/LevelSelect.tscn")
