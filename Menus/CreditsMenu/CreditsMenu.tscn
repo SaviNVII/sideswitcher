@@ -1,13 +1,13 @@
-[gd_scene format=3 uid="uid://dif4jwqh6u6s0"]
+[gd_scene load_steps=2 format=3 uid="uid://dif4jwqh6u6s0"]
 
 [ext_resource type="Script" uid="uid://cbbk8h4ipy7ig" path="res://Menus/CreditsMenu/credits_menu.gd" id="1_8pxlg"]
 
-[node name="CreditsMenu" type="Node2D" unique_id=470937511]
+[node name="CreditsMenu" type="Node2D"]
 script = ExtResource("1_8pxlg")
 
-[node name="LabelNode" type="Node2D" parent="." unique_id=659708043]
+[node name="LabelNode" type="Node2D" parent="."]
 
-[node name="Label" type="Label" parent="LabelNode" unique_id=1544367884]
+[node name="Label" type="Label" parent="LabelNode"]
 offset_left = 391.0
 offset_top = 210.0
 offset_right = 431.0

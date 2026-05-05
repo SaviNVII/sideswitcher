@@ -28,7 +28,7 @@ var side_map = events[0].sideMap
 var delay = 16/bpm
 var delay_index = 0
 
-var obstacle_speed = bpm * 2
+var obstacle_speed = 300
 
 var time_count: int = 0
 
