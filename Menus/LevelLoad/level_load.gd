@@ -18,7 +18,7 @@ var current_offset = 1
 var song_name = Global.levels[Global.selected].name
 var bpm = Global.levels[Global.selected].bpm
 var events = Global.levels[Global.selected].events
-var sides = int(events[0].extraData.sides)
+var sides: int = int(events[0].extraData.sides)
 var player_rotation = (180/sides) * current_offset
 var time = int(events[0].time)
 
@@ -50,7 +50,8 @@ func load_map():
 
 		var values = line.split(",")
 		if current_part == "side":
-			side_map.append(int(values[0]))
+			for i in range(values.size()):
+				side_map.append(values[i])
 		else:
 			var int_values = []
 			for v in values:
@@ -94,7 +95,7 @@ func _physics_process(delta: float) -> void:
 			current_offset = int((sides * 2) - 1)
 		player_rotation = (180/sides) * current_offset
 	
-func change_sides(amount):
+func change_sides(amount: int):
 	sides = amount
 	player_rotation = (180/sides) * current_offset
 	if (current_offset >= sides * 2):
@@ -117,8 +118,8 @@ func update_game():
 				add_child(new_obstacle)
 				new_obstacle.create_obstacle(i, sides, 50, 400, obstacle_speed, fade_color)
 	
-	if(map_index < side_map.size() && side_map[map_index] > 2):
-		change_sides(side_map[map_index])
+	if(map_index < side_map.size() && int(side_map[map_index]) > 2):
+		change_sides(int(side_map[map_index]))
 			
 	map_index += 1
 
