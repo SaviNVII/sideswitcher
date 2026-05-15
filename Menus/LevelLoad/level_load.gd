@@ -89,12 +89,12 @@ func set_player():
 func update_game():
 	for i in range(level_map.size()):
 		if(map_index < level_map[i].size()):
-			if(typeof(level_map[i][map_index]) == TYPE_FLOAT):
+			if(level_map[i][map_index] == 1):
 				var new_obstacle = preloaded_obstacle.instantiate()
 				add_child(new_obstacle)
 				new_obstacle.create_obstacle(i, sides, 50, 400, obstacle_speed, fade_color)
 	
-	if(map_index < side_map.size() && typeof(side_map[map_index]) == TYPE_FLOAT):
+	if(map_index < side_map.size() && side_map[map_index] > 2):
 		change_sides(side_map[map_index])
 			
 	map_index += 1
