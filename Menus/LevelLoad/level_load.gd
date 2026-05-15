@@ -44,7 +44,6 @@ func load_map():
 		var line = file.get_line().strip_edges()
 
 		if line.is_empty():
-			# Empty line signals switch to second section
 			current_part = "side"
 			continue
 
