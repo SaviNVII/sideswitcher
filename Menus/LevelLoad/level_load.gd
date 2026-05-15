@@ -22,8 +22,8 @@ var sides = int(events[0].extraData.sides)
 var player_rotation = (180/sides) * current_offset
 var time = int(events[0].time)
 
-var level_map = events[0].map
-var side_map = events[0].sideMap
+var level_map = []
+var side_map = []
 
 var delay = 16/bpm
 var delay_index = 0
@@ -34,9 +34,32 @@ var time_count: int = 0
 
 var fade_color = events[0].extraData.fadeColor.duplicate()
 
-var song = load("res://Levels/" + song_name + "/song.ogg")
+var level_path: String = "res://Levels/"
+var song = load(level_path + song_name + "/song.ogg")
+
+func load_map():
+	var file = FileAccess.open(level_path + song_name + "/map.txt", FileAccess.READ)
+	var current_part = "level"
+	while not file.eof_reached():
+		var line = file.get_line().strip_edges()
+
+		if line.is_empty():
+			# Empty line signals switch to second section
+			current_part = "side"
+			continue
+
+		var values = line.split(",")
+		if current_part == "side":
+			side_map.append(int(values[0]))
+		else:
+			var int_values = []
+			for v in values:
+				int_values.append(int(v))
+			level_map.append(int_values)
+	file.close()
 
 func _ready() -> void:
+	load_map()
 	create_shape(sides)
 	add_child(player)
 	
@@ -89,7 +112,7 @@ func set_player():
 func update_game():
 	for i in range(level_map.size()):
 		if(map_index < level_map[i].size()):
-			if(level_map[i][map_index] == 1):
+			if(level_map[i][map_index] == 1): 
 				var new_obstacle = preloaded_obstacle.instantiate()
 				add_child(new_obstacle)
 				new_obstacle.create_obstacle(i, sides, 50, 400, obstacle_speed, fade_color)
