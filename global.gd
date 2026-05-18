@@ -8,6 +8,8 @@ var screen_height = screen_size.y
 var screen_center_x = screen_width/2
 var screen_center_y = screen_height/2
 
+var level_freeze: bool = false
+
 var current_message = "lorem ipsum"
 
 func _ready() -> void:

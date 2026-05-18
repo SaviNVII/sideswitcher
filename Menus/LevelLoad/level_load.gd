@@ -59,9 +59,13 @@ func load_map():
 	file.close()
 
 func _ready() -> void:
+	Global.level_freeze = false
+	
 	load_map()
 	create_shape(sides)
 	add_child(player)
+	
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	
 	$AudioStreamPlayer2D.stream = song
 	$AudioStreamPlayer2D.play()
@@ -70,29 +74,38 @@ func _ready() -> void:
 	$Timer.start()
 	
 func _physics_process(delta: float) -> void:
-	if time_count >= time:
-		win()
+	if !player.is_alive:
+		freeze_screen()
 	
-	if(delay_index >= delay):
-		update_game()
-		delay_index -= delay
-	else:
-		delay_index += delta
 	if Input.is_action_just_pressed("Esc"):
 		get_tree().change_scene_to_file("res://Menus/LevelMenu/LevelSelect.tscn")
-		
-	set_player()
+	if Input.is_action_just_pressed("Reset"):
+		get_tree().reload_current_scene()
 	
-	if (Input.is_action_just_pressed("Right")):
-		current_offset += 2
-		if (current_offset >= sides * 2):
-			current_offset = 1
-		player_rotation = (180/sides) * current_offset
-	else: if (Input.is_action_just_pressed("Left")):
-		current_offset -= 2
-		if (current_offset <= 0):
-			current_offset = int((sides * 2) - 1)
-		player_rotation = (180/sides) * current_offset
+	if !Global.level_freeze:
+		if time_count >= time:
+			win()
+		
+		if(delay_index >= delay):
+			update_game()
+			delay_index -= delay
+		else:
+			delay_index += delta
+		
+		set_player()
+		
+		if (Input.is_action_just_pressed("Right")):
+			current_offset += 2
+			if (current_offset >= sides * 2):
+				current_offset = 1
+			player_rotation = (180/sides) * current_offset
+		else: if (Input.is_action_just_pressed("Left")):
+			current_offset -= 2
+			if (current_offset <= 0):
+				current_offset = int((sides * 2) - 1)
+			player_rotation = (180/sides) * current_offset
+	else:
+		$AudioStreamPlayer2D.stop()
 	
 func change_sides(amount: int):
 	sides = amount
@@ -137,7 +150,16 @@ func create_shape(vertices_amount):
 	add_child(poly)	
 
 func _on_timer_timeout():
-	time_count += 1
+	if !Global.level_freeze:
+		time_count += 1
 	
 func win():
 	Global.displayMessage("You Win")
+
+func freeze_screen():
+	Global.level_freeze = true
+	#show a menu later with something like show()
+
+func unfreeze_screen():
+	#hide the menu with something like hide()
+	Global.level_freeze = false

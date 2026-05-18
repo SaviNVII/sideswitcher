@@ -24,7 +24,8 @@ var area = Area2D.new()
 var shape = ConvexPolygonShape2D.new()
 
 func _physics_process(delta: float) -> void:
-	update_shape(obstacle_speed * delta)
+	if !Global.level_freeze:
+		update_shape(obstacle_speed * delta)
 
 func create_obstacle(side, sides, height, dist, speed, fade):
 	distance = dist
