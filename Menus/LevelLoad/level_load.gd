@@ -78,11 +78,18 @@ func _physics_process(delta: float) -> void:
 		freeze_screen()
 	
 	if Input.is_action_just_pressed("Esc"):
-		get_tree().change_scene_to_file("res://Menus/LevelMenu/LevelSelect.tscn")
+		if Global.level_freeze:
+			get_tree().change_scene_to_file("res://Menus/LevelMenu/LevelSelect.tscn")
+		else:
+			freeze_screen()
 	if Input.is_action_just_pressed("Reset"):
 		get_tree().reload_current_scene()
+	if Input.is_action_just_pressed("Select"):
+		if Global.level_freeze and player.is_alive:
+			unfreeze_screen()
 	
 	if !Global.level_freeze:
+		$AudioStreamPlayer2D.stream_paused = false
 		if time_count >= time:
 			win()
 		
@@ -105,7 +112,7 @@ func _physics_process(delta: float) -> void:
 				current_offset = int((sides * 2) - 1)
 			player_rotation = (180/sides) * current_offset
 	else:
-		$AudioStreamPlayer2D.stop()
+		$AudioStreamPlayer2D.stream_paused = true
 	
 func change_sides(amount: int):
 	sides = amount
